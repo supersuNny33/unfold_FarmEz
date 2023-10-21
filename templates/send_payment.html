@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Smart Contract Payment</title>
+
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://images.pexels.com/photos/2131784/pexels-photo-2131784.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 100%;
+            max-width: 450px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #357162;
+            padding: 50px 60px 70px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* Title Styles */
+        h1 {
+            font-weight: 800;
+            font-size: 2.1rem;
+            margin-bottom: 30px;
+            color: seashell;
+            position: relative;
+        }
+
+        .underline {
+            position: relative;
+        }
+
+        .underline::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            top: 3.2rem;
+            bottom: 0;
+            left: 0;
+            background-color: #28a788;
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .underline:hover::after {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+
+        /* Form Styles */
+        form {
+            text-align: left;
+        }
+
+        label {
+            color: white;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            background: white;
+            /* Change the background color to white */
+            border: 0;
+            outline: 0;
+            padding: 10px 15px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            max-height: 50px;
+            transition: max-height 0.5s;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        button[type="submit"] {
+            background: white;
+            color: black;
+            font-weight: 900;
+            flex-basis: 100%;
+            height: 50px;
+            /* Increase the height to make it bigger */
+            border-radius: 10px;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+            transition: background 1s;
+            margin: 1.5rem auto 0;
+            /* Center the button horizontally */
+            display: block;
+            /* Center the button horizontally */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #14ae87;
+            transition: 0.2s;
+        }
+
+        /* Transaction Status Styles */
+        h2 {
+            color: seashell;
+        }
+
+        p {
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+    <!-- Include the font awesome script -->
+    <script src="https://kit.fontawesome.com/aed243d69b.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="title"><span class="underline">Smart Contract Payment</span></h1>
+        <form method="post" action="/send_payment">
+            <label for="recipient_address">Recipient Address:</label>
+            <input type="text" name="recipient_address" required>
+            <br><br>
+            <label for="amount_ether">Amount (ETH):</label>
+            <input type="number" step="0.01" name="amount_ether" required>
+            <br><br>
+            <button type="submit">Send Payment</button>
+        </form>
+        <div>
+            <h2>Transaction Status:</h2>
+            <p>{{ transaction_status }}</p>
+        </div>
+        <!-- Add a button to bridge -->
+        <a href="/bridge" class="bridge-button">Bridge to Other Network</a>
+    </div>
+</body>
+
+</html>
